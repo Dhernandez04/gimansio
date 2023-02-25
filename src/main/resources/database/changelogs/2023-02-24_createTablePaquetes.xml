@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+     <changeSet id="2023022402" author="dhernandez">
+        <createTable tableName="paquetes">
+            <column name="id" type="int" remarks="Identificador autoincremental" autoIncrement="true">
+               <constraints primaryKey="true"/>
+            </column>
+            <column name="nombre" type="varchar(255)" remarks="Nombre del paquete">
+               <constraints nullable="false"/>
+            </column>
+            <column name="descripcion" type="text" remarks="Descripcion del paquete o servicio">
+               <constraints nullable="false"/>
+            </column>
+            <column name="precio" type="decimal(10,2)" remarks="Precio de venta del paquete">
+               <constraints nullable="false"/>
+            </column>
+            <column name="fecha_inicio" type="date" remarks="Fecha de inicio del paquete">
+               <constraints nullable="false"/>
+            </column>
+            <column name="fecha_fin" type="date" remarks="Fecha de vencimiento del paquete">
+               <constraints nullable="true"/>
+            </column>
+            <column name="id_imagen" type="int" remarks="Campo referencial del de la imagen">
+               <constraints nullable="true"/>
+            </column>
+            
+        </createTable>
+          <rollback>
+          <dropTable tableName="paquetes"/>  
+        </rollback>
+     </changeSet>
+     
+     <changeSet author="dhernandez" id="2023022403">
+        <addForeignKeyConstraint baseColumnNames="id_imagen"
+            baseTableName="paquetes"
+            constraintName="fk_id_imagen"
+            onDelete="RESTRICT"
+            onUpdate="CASCADE"
+            referencedColumnNames="id"
+            referencedTableName="imagenes"/>
+           
+            <rollback>
+             <dropForeignKeyConstraint baseTableName="paquetes" constraintName="fk_id_imagen"/>
+            </rollback>
+     </changeSet>
+     
+     
+</databaseChangeLog>

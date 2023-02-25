@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+     <changeSet id="2023022405" author="dhernandez">
+        <createTable tableName="usuarios">
+            <column name="id" type="int" remarks="Identificador autoincremental" autoIncrement="true">
+               <constraints primaryKey="true"/>
+            </column>
+            <column name="usuario" type="varchar(20)" remarks="Usuario de acceso al sistema">
+               <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(255)" remarks="Clave de usuario">
+               <constraints nullable="false"/>
+            </column>
+            <column name="nombres" type="varchar(60)" remarks="Nombres del usuario">
+               <constraints nullable="false"/>
+            </column>
+            <column name="apellidos" type="varchar(60)" remarks="Apellidos del usuario">
+               <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(90)" remarks="Direccion de email">
+               <constraints nullable="false"/>
+            </column>
+            <column name="telefono" type="varchar(13)" remarks="Telefono del usuario">
+               <constraints nullable="false"/>
+            </column>
+            <column name="estado" type="varchar(60)" remarks="Estado del usuario">
+               <constraints nullable="false"/>
+            </column>
+            <column name="id_rol" type="int" remarks="Campo referencial del rol de usuario">
+               <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+          <dropTable tableName="usuarios"/>  
+        </rollback>
+     </changeSet>
+     
+     <changeSet author="dhernandez" id="2023022406">
+        <addForeignKeyConstraint baseColumnNames="id_rol"
+            baseTableName="usuarios"
+            constraintName="fk_rol_id"
+            onDelete="RESTRICT"
+            onUpdate="CASCADE"
+            referencedColumnNames="id"
+            referencedTableName="roles"/>
+           
+            <rollback>
+             <dropForeignKeyConstraint baseTableName="usuarios" constraintName="fk_rol_id"/>
+            </rollback>
+     </changeSet>
+   
+</databaseChangeLog>

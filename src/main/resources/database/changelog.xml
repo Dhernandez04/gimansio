@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+
+
+<!-- <include file="changelogs/2021-10-19_createTableProjects.xml"/> -->
+		<include file="changelogs/2023-02-24_createTableImagenes.xml"/>
+		<include file="changelogs/2023-02-24_createTablePaquetes.xml"/>
+		<include file="changelogs/2023-02-24_createTableRoles.xml"/>
+		<include file="changelogs/2023-02-24_createTableUsuarios.xml"/>
+		<include file="changelogs/2023-02-24_insertRoles.xml"/>
+		
+</databaseChangeLog>
